@@ -15,7 +15,7 @@ env.config();
 
 //mongodb connection
 // mongodb+srv://root:<password>@cluster0.shxlg.mongodb.net/?retryWrites=true&w=majority
-mongoose.connect(`mongodb+srv://root:dheeraj%40123@cluster0.shxlg.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,{
+mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.shxlg.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
    

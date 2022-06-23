@@ -12,6 +12,7 @@ const Header = (props) => {
 
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="me-auto"></Nav>
                         <Nav>
                             {/* <Nav.Link href="#deets">Signin</Nav.Link> */}
                             <li className='nav-item'>
