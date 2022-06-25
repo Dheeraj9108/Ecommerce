@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 exports.signup = (req, res) => {
     User.findOne({ email: req.body.email })
         .exec((error, user) => {
+            if(error){return res.status(400).json(error)}
             if (user) return res.status(400).json({
                 message: "Admin already registered"
             });
@@ -65,10 +66,3 @@ exports.signin = (req, res) => {
         })
 }
 
-exports.requireSigin = (req,res,next) => {
-    const token = req.headers.authorization.split(" ")[1];
-    const user = jwt.verify(token,process.env.JWT_SECRET);
-    req.user = user;
-    console.log(user);
-    next();
-}

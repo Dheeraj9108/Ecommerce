@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 exports.signup = (req, res) => {
     User.findOne({ email: req.body.email })
-        .exec((error, user) => {
+        .exec((user) => {
             if (user) return res.status(400).json({
                 message: "user already registered"
             });
@@ -19,7 +19,7 @@ exports.signup = (req, res) => {
                 email,
                 password,
                 username: Math.random().toString(),
-                role:'admin'
+                role:'user'
             });
             _user.save((error, data) => {
                 if (error) {
@@ -30,7 +30,7 @@ exports.signup = (req, res) => {
 
                 if (data) {
                     return res.status(201).json({
-                        user: "Admin created sucessfully"
+                        user: "user created sucessfully"
                     })
                 }
             });
@@ -65,10 +65,3 @@ exports.signin = (req, res) => {
         })
 }
 
-exports.requireSigin = (req,res,next) => {
-    const token = req.headers.authorization.split(" ")[1];
-    const user = jwt.verify(token,process.env.JWT_SECRET);
-    req.user = user;
-    console.log(user);
-    next();
-}
