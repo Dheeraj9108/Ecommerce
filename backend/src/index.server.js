@@ -3,6 +3,7 @@ const env = require("dotenv");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path = require('path');
 
 
 //routes
@@ -38,6 +39,7 @@ mongoose.connect('mongodb://localhost:27017/Ecommerce', {
 
 
 app.use(express.json());
+app.use('/public',express.static(path.join(__dirname,'uploads')))
 app.use('/api',authRoutes);
 app.use('/api',adminRoutes);
 app.use('/api',categoryRoutes);
