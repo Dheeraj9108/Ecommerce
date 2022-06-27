@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require('path');
+const cors = require('cors');
 
 
 //routes
@@ -37,7 +38,7 @@ mongoose.connect('mongodb://localhost:27017/Ecommerce', {
     }
 })
 
-
+app.use(cors());
 app.use(express.json());
 app.use('/public',express.static(path.join(__dirname,'uploads')))
 app.use('/api',authRoutes);
