@@ -1,18 +1,34 @@
 import { authconstants } from "../actions/constants"
 
 const initialState = {
-    name:'dhe'
+    token: null,
+    user: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        picture: "",
+    },
+    authenticate: false,
+    authenticating: false
 }
 
-export const authReducer = (state = initialState,action)=>{
+export const authReducer = (state = initialState, action) => {
     console.log(action)
-    switch(action.type){
+    switch (action.type) {
         case authconstants.LOGIN_REQUEST: state = {
             ...state,
-            ...action.payload
+            authenticating: true
         }
-        break;
-    } 
+            break;
+        case authconstants.LOGIN_SUCCESS: state = {
+            ...state,
+            user: action.payload.user,
+            token: action.payload.token,
+            authenticate: true,
+            authenticating:false
+        }
+            break;
+    }
     //console.log(state);
     return state;
 }
