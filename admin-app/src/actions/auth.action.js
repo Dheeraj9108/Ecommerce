@@ -4,14 +4,12 @@ import { authconstants } from "./constants"
 export const login = (user) => {
     // console.log(user);
     return async (dispatch) => {
-
-
         dispatch({ type: authconstants.LOGIN_REQUEST });
         const res = await axios.post('/admin/signin', {
             ...user
         })
 
-        if (res.status == 200) {
+        if (res.status === 200) {
             const { token, user } = res.data;
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
@@ -22,7 +20,7 @@ export const login = (user) => {
                 }
             })
         } else {
-            if (res.status == 400) {
+            if (res.status === 400) {
                 dispatch({
                     type: authconstants.LOGIN_FAILURE,
                     payload: {
@@ -33,6 +31,7 @@ export const login = (user) => {
         }
     }
 }
+
 export const isUserLogedIn = () => {
     return async (dispatch) => {
         const token = localStorage.getItem('token')
@@ -52,5 +51,14 @@ export const isUserLogedIn = () => {
                 }
             })
         }
+    }
+}
+
+export const signout = () => {
+    return async dispatch => {
+        localStorage.clear()
+        dispatch({
+            type: authconstants.LOUGOUT_REQUEST
+        })
     }
 }

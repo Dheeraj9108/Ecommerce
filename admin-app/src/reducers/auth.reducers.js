@@ -25,7 +25,11 @@ export const authReducer = (state = initialState, action) => {
             user: action.payload.user,
             token: action.payload.token,
             authenticate: true,
-            authenticating:false
+            authenticating: false
+        }
+            break;
+        case authconstants.LOUGOUT_REQUEST: state = {
+            ...initialState
         }
             break;
     }

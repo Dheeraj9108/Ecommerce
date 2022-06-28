@@ -1,18 +1,24 @@
 import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { NavLink, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { signout } from '../../actions/auth.action'
 
 const Header = (props) => {
 
 
     const auth = useSelector(state => state.auth);
+    const dispatch = useDispatch()
+
+    const logout = () => {
+        dispatch(signout());
+    }
 
     const renderLogedInLinks = () => {
         return (
             <Nav>
                 <li className='nav-item'>
-                    <span className="nav-link">Signout</span>
+                    <span className="nav-link" onClick={logout}>Signout</span>
                 </li>
             </Nav>);
     }
@@ -47,7 +53,7 @@ const Header = (props) => {
                                 <NavLink to="/signup" className='nav-link'>Signup</NavLink>
                             </li>
                         </Nav> */}
-                        {auth.authenticate ? renderLogedInLinks():renderNonLogedInLinks()}
+                        {auth.authenticate ? renderLogedInLinks() : renderNonLogedInLinks()}
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
