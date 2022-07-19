@@ -7,6 +7,9 @@ import Signup from './container/Signup';
 import PrivateRoute from './components/HOC/PrivateRoute';
 import { useSelector,useDispatch } from 'react-redux';
 import { isUserLogedIn } from './actions';
+import Products from './container/Products';
+import Orders from './container/Orders';
+import Category from './container/Categoty';
 
 
 
@@ -19,6 +22,7 @@ function App() {
     if(!auth.authenticate){
       dispatch(isUserLogedIn())
     }
+    // eslint-disable-next-line
   },[])
 
 
@@ -26,6 +30,9 @@ function App() {
     <div className="App">
         <Routes>
           <Route exact path='/' element={<PrivateRoute><Home/></PrivateRoute>}></Route>
+          <Route exact path='/products' element={<PrivateRoute><Products/></PrivateRoute>}></Route>
+          <Route exact path='/category' element={<PrivateRoute><Category/></PrivateRoute>}></Route>
+          <Route exact path='/orders' element={<PrivateRoute><Orders/></PrivateRoute>}></Route>
           <Route exact path='/signin' element={<Signin />}></Route>
           <Route exact path='/signup' element={<Signup />}></Route>
         </Routes>

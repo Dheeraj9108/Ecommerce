@@ -56,9 +56,23 @@ export const isUserLogedIn = () => {
 
 export const signout = () => {
     return async dispatch => {
-        localStorage.clear()
-        dispatch({
-            type: authconstants.LOUGOUT_REQUEST
-        })
+
+        dispatch({type:authconstants.LOUGOUT_REQUEST})
+
+        const res = await axios.post('/admin/signout')
+        console.log(res.data);
+        if (res.status == 200) {
+            localStorage.clear()
+            dispatch({
+                type: authconstants.LOUGOUT_SUCCESS
+            })
+        }else{
+            dispatch({
+                type:authconstants.LOUGOUT_FAILURE,
+                payload:{error:res.data.error}
+            })
+        }
+
+
     }
 }

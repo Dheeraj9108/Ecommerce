@@ -9,7 +9,10 @@ const initialState = {
         picture: "",
     },
     authenticate: false,
-    authenticating: false
+    authenticating: false,
+    lodaing:false,
+    error:null,
+    message:''
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -29,7 +32,18 @@ export const authReducer = (state = initialState, action) => {
         }
             break;
         case authconstants.LOUGOUT_REQUEST: state = {
+            ...state,
+            lodaing:true
+        }
+            break;
+        case authconstants.LOUGOUT_SUCCESS: state = {
             ...initialState
+        }
+            break;
+        case authconstants.LOUGOUT_FAILURE: state = {
+            ...state,
+            error : action.payload.error,
+            loading:false
         }
             break;
     }

@@ -5,5 +5,7 @@
     left: 0;
     background-color:#eee ;
     padding-top: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
     box-shadow: inset 0 0 2px grey;
 }
