@@ -6,10 +6,11 @@ import Signin from './container/Signin';
 import Signup from './container/Signup';
 import PrivateRoute from './components/HOC/PrivateRoute';
 import { useSelector,useDispatch } from 'react-redux';
-import { isUserLogedIn } from './actions';
+import { getAllCategory, getInitialData, isUserLogedIn } from './actions';
 import Products from './container/Products';
 import Orders from './container/Orders';
 import Category from './container/Categoty';
+
 
 
 
@@ -22,6 +23,7 @@ function App() {
     if(!auth.authenticate){
       dispatch(isUserLogedIn())
     }
+    dispatch(getInitialData());
     // eslint-disable-next-line
   },[])
 
