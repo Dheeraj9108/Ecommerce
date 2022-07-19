@@ -77,6 +77,8 @@ const Category = () => {
                             <button onClick={handleShow}>Add</button>
                         </div>
                     </Col>
+                </Row>
+                <Row>
                     <Col md={12}>
                         <ul>
                             {renderCategories(category.categories)}
