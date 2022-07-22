@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllCategory } from '../../actions';
@@ -9,6 +9,7 @@ const MenuHeader = () => {
 
   useEffect(() => {
     dispatch(getAllCategory());
+    // eslint-disable-next-line
   }, [])
 
   const renderCategories = (categories) => {

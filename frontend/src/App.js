@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path='/' element={<HomePage />}></Route>
-          <Route exact path='/:slug' element={<ProductListPage />}></Route>
+          <Route exact path='/:slug' element={<ProductListPage hellow={"hellow"}/>}></Route>
         </Routes>
       </Router>
     </div>
